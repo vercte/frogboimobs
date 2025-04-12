@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "frogboimobs",
+  "version": "${version}",
+  "name": "FrogboiMobs",
+  "description": "",
+  "authors": [
+    "Vercte"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "MIT",
+  "icon": "assets/frogboimobs/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.vercte.frogboimobs.fabric.FrogboiMobsFabric"
+    ],
+    "client": [
+      "net.vercte.frogboimobs.fabric.client.FrogboiMobsFabricClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.13",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
