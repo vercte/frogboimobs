@@ -8,5 +8,6 @@ public final class FrogboiMobsFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         FrogboiMobsClient.initialize();
         FrogboiMobsClient.registerRenderers();
+        FrogboiMobsClient.registerParticles();
     }
 }
