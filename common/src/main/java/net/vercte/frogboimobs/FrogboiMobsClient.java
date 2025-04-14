@@ -12,7 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.vercte.frogboimobs.content.entity.surprisecreeper.SurpriseCreeperModel;
 import net.vercte.frogboimobs.content.entity.surprisecreeper.SurpriseCreeperRenderer;
-import net.vercte.frogboimobs.content.visual.particle.ConfettiParticle;
+import net.vercte.frogboimobs.content.effect.particle.ConfettiParticle;
 
 import java.util.function.Supplier;
 

@@ -1,4 +1,4 @@
-package net.vercte.frogboimobs.content.visual.particle;
+package net.vercte.frogboimobs.content.effect.particle;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;

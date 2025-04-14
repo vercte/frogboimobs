@@ -1,0 +1,6 @@
+{
+  "party_horn": {
+    "subtitle": "sound.frogboimobs.party_horn",
+    "sounds": ["frogboimobs:party_horn"]
+  }
+}

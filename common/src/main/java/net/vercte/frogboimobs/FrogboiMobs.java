@@ -12,6 +12,7 @@ public final class FrogboiMobs {
         ModBlocks.initialize();
         ModEntities.initalize();
         ModParticles.initialize();
+        ModSounds.initialize();
     }
 
     public static ResourceLocation asResource(String id) {

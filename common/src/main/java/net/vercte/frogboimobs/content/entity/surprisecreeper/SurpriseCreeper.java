@@ -4,8 +4,11 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -19,6 +22,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.vercte.frogboimobs.ModParticles;
+import net.vercte.frogboimobs.ModSounds;
+import org.jetbrains.annotations.NotNull;
 
 public class SurpriseCreeper extends Monster {
     private static final EntityDataAccessor<Integer> DATA_SWELL_DIR = SynchedEntityData.defineId(SurpriseCreeper.class, EntityDataSerializers.INT);
@@ -98,10 +103,21 @@ public class SurpriseCreeper extends Monster {
         if(!this.level().isClientSide() && level() instanceof ServerLevel SLevel) {
             this.dead = true;
 
-            SLevel.sendParticles(ModParticles.CONFETTI.get(), this.getX(), this.getY() + 1, this.getZ(), 1024, 0, 0,0, 0.15);
+            SLevel.sendParticles(ModParticles.CONFETTI.get(), this.getX(), this.getY() + 1, this.getZ(), 256, 0, 0,0, 0.15);
+            this.playSound(ModSounds.PARTY_HORN.get(), 2, 1 + (float)(Math.random() * 0.1f - 0.05f));
 
             this.triggerOnDeathMobEffects(RemovalReason.KILLED);
             this.discard();
         }
+    }
+
+    @NotNull
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return SoundEvents.CREEPER_HURT;
+    }
+
+    @NotNull
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.CREEPER_DEATH;
     }
 }
