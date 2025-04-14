@@ -1,4 +1,4 @@
-package net.vercte.frogboimobs.platform.content.visual.particle;
+package net.vercte.frogboimobs.content.visual.particle;
 
 import net.minecraft.core.particles.SimpleParticleType;
 

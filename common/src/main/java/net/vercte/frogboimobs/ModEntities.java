@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.vercte.frogboimobs.platform.Services;
-import net.vercte.frogboimobs.platform.content.entity.surprisecreeper.SurpriseCreeper;
+import net.vercte.frogboimobs.content.entity.surprisecreeper.SurpriseCreeper;
 
 import java.util.HashMap;
 import java.util.function.Supplier;

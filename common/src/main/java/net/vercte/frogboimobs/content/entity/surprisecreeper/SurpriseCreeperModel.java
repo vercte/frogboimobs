@@ -1,4 +1,4 @@
-package net.vercte.frogboimobs.platform.content.entity.surprisecreeper;
+package net.vercte.frogboimobs.content.entity.surprisecreeper;
 
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -24,6 +24,7 @@ public class SurpriseCreeperModel extends HierarchicalModel<SurpriseCreeper> {
         this.head = root.getChild("head");
     }
 
+    @SuppressWarnings("unused")
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();

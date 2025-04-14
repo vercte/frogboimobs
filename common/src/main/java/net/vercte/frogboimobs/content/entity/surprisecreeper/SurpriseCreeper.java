@@ -1,4 +1,4 @@
-package net.vercte.frogboimobs.platform.content.entity.surprisecreeper;
+package net.vercte.frogboimobs.content.entity.surprisecreeper;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -98,7 +98,7 @@ public class SurpriseCreeper extends Monster {
         if(!this.level().isClientSide() && level() instanceof ServerLevel SLevel) {
             this.dead = true;
 
-            SLevel.sendParticles(ModParticles.CONFETTI.get(), this.getX(), this.getY() + 1, this.getZ(), 128, 0, 0,0, 0.15);
+            SLevel.sendParticles(ModParticles.CONFETTI.get(), this.getX(), this.getY() + 1, this.getZ(), 1024, 0, 0,0, 0.15);
 
             this.triggerOnDeathMobEffects(RemovalReason.KILLED);
             this.discard();

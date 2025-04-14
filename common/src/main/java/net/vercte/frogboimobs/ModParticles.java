@@ -4,7 +4,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.vercte.frogboimobs.platform.Services;
-import net.vercte.frogboimobs.platform.content.visual.particle.ParticleUtils;
+import net.vercte.frogboimobs.content.visual.particle.ParticleUtils;
 
 import java.util.function.Supplier;
 

@@ -1,4 +1,4 @@
-package net.vercte.frogboimobs.platform.content.entity.surprisecreeper;
+package net.vercte.frogboimobs.content.entity.surprisecreeper;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.ModelLayerLocation;

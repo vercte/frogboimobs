@@ -19,6 +19,7 @@ public final class FrogboiMobsNeoForge {
         FrogboiMobs.initialize();
 
         bus.addListener(FrogboiMobsNeoforgeClient::onClientSetup);
+        bus.addListener(FrogboiMobsClientImpl::registerFactory);
         bus.addListener(this::registerEntityAttributes);
         NeoforgeRegistryHelper.registerAll(bus);
     }

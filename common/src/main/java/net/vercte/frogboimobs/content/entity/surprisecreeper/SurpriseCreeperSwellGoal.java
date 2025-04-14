@@ -1,4 +1,4 @@
-package net.vercte.frogboimobs.platform.content.entity.surprisecreeper;
+package net.vercte.frogboimobs.content.entity.surprisecreeper;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
