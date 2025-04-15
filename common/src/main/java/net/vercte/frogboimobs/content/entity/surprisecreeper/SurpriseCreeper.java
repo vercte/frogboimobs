@@ -3,13 +3,15 @@ package net.vercte.frogboimobs.content.entity.surprisecreeper;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -21,9 +23,17 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.vercte.frogboimobs.ModLootTables;
 import net.vercte.frogboimobs.ModParticles;
 import net.vercte.frogboimobs.ModSounds;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.Objects;
 
 public class SurpriseCreeper extends Monster {
     private static final EntityDataAccessor<Integer> DATA_SWELL_DIR = SynchedEntityData.defineId(SurpriseCreeper.class, EntityDataSerializers.INT);
@@ -92,23 +102,57 @@ public class SurpriseCreeper extends Monster {
 
             if (this.swell >= this.maxSwell) {
                 this.swell = this.maxSwell;
-                this.presentYay();
+                this.explode();
             }
         }
 
         super.tick();
     }
 
-    private void presentYay() {
+    private void explode() {
         if(!this.level().isClientSide() && level() instanceof ServerLevel SLevel) {
             this.dead = true;
 
             SLevel.sendParticles(ModParticles.CONFETTI.get(), this.getX(), this.getY() + 1, this.getZ(), 256, 0, 0,0, 0.15);
-            this.playSound(ModSounds.PARTY_HORN.get(), 2, 1 + (float)(Math.random() * 0.1f - 0.05f));
+            this.playSound(ModSounds.SURPRISE_CREEPER_EXPLODES.get(), 2, 1 + (float)(Math.random() * 0.14f - 0.07f));
+
+            this.dropPresents(SLevel);
 
             this.triggerOnDeathMobEffects(RemovalReason.KILLED);
             this.discard();
         }
+    }
+
+    private void dropPresents(ServerLevel level) {
+        double factor = level.random.nextFloat();
+
+        if(factor < 0.10) {
+            dropLoot(level, ModLootTables.SURPRISE_CREEPER_RARE_GIFTS);
+        } else if(factor < 0.40) {
+            dropLoot(level, ModLootTables.SURPRISE_CREEPER_COMMON_GIFTS);
+        } else {
+            spawnEntity(level);
+        }
+    }
+
+    private void spawnEntity(ServerLevel level) {
+        List<EntityType<?>> SPAWNABLE_ENTITIES = List.of(
+                EntityType.CHICKEN, EntityType.HUSK, EntityType.CREEPER, EntityType.SLIME, EntityType.VEX
+        );
+
+        int index = level.random.nextInt(SPAWNABLE_ENTITIES.size());
+        Entity entity = SPAWNABLE_ENTITIES.get(index).create(level, e -> {}, this.blockPosition(), MobSpawnType.MOB_SUMMONED, true, true);
+        level.addFreshEntity(entity);
+    }
+
+    private void dropLoot(ServerLevel level, ResourceKey<LootTable> tableKey) {
+        LootTable table = level.getServer().reloadableRegistries().getLootTable(tableKey);
+        LootParams params = new LootParams.Builder(level)
+                .withParameter(LootContextParams.THIS_ENTITY, this)
+                .withParameter(LootContextParams.ORIGIN, this.position())
+                .create(LootContextParamSets.GIFT);
+
+        table.getRandomItems(params, this.getLootTableSeed(), stack -> this.spawnAtLocation(stack, 0.5f));
     }
 
     @NotNull

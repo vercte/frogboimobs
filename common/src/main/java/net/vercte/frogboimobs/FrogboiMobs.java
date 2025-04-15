@@ -9,6 +9,7 @@ public final class FrogboiMobs {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void initialize() {
+        ModItems.initialize();
         ModBlocks.initialize();
         ModEntities.initalize();
         ModParticles.initialize();

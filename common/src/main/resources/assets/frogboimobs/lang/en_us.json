@@ -1,4 +1,7 @@
 {
   "entity.frogboimobs.surprise_creeper": "Surprise Creeper",
-  "sound.frogboimobs.party_horn": "Surprise Creeper Explodes"
+  "item.frogboimobs.surprise_firework": "Surprise Firework",
+
+  "sound.frogboimobs.party_horn": "Party Horn gets blown",
+  "sound.frogboimobs.surprise_creeper_explodes": "Surprise Creeper Explodes"
 }

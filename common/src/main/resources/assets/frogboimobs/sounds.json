@@ -1,4 +1,8 @@
 {
+  "surprise_creeper_explodes": {
+    "subtitle": "sound.frogboimobs.surprise_creeper_explodes",
+    "sounds": ["frogboimobs:party_horn"]
+  },
   "party_horn": {
     "subtitle": "sound.frogboimobs.party_horn",
     "sounds": ["frogboimobs:party_horn"]

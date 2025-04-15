@@ -6,6 +6,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.Entity;
@@ -19,6 +20,11 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class FrogboiMobsClient {
     public static void initialize() {}
+
+    public static void registerItemProperties() {
+        ItemProperties.register(ModItems.PARTY_HORN.get(),
+                FrogboiMobs.asResource("tooting"), (stack, level, living, id) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
+    }
 
     public static void registerRenderers() {
         registerRenderer(ModEntities.SURPRISE_CREEPER.get(), SurpriseCreeperRenderer.getProvider());

@@ -7,6 +7,7 @@ public final class FrogboiMobsFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         FrogboiMobsClient.initialize();
+        FrogboiMobsClient.registerItemProperties();
         FrogboiMobsClient.registerRenderers();
         FrogboiMobsClient.registerParticles();
     }

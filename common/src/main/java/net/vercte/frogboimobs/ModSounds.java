@@ -7,6 +7,7 @@ import net.vercte.frogboimobs.platform.Services;
 import java.util.function.Supplier;
 
 public class ModSounds {
+    public static final Supplier<SoundEvent> SURPRISE_CREEPER_EXPLODES = register("surprise_creeper_explodes");
     public static final Supplier<SoundEvent> PARTY_HORN = register("party_horn");
 
     public static Supplier<SoundEvent> register(String id) {
